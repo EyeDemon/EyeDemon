@@ -1,0 +1,41 @@
+1. import math
+2. def Kh_Cach(p, q):
+3. return math.sqrt((p[0]-q[0])**2 + (p[1]-q[1])**2)
+4. def DaiCanh(r):
+5. a = Kh_Cach(r[1], r[2])
+6. b = Kh_Cach(r[0], r[2])
+7. c = Kh_Cach(r[0], r[1])
+8. return a, b, c
+9. def ChuVi(r):
+10. a, b, c = DaiCanh(r)
+11. return a + b + c
+12. def DienTich(r):
+13. a, b, c = DaiCanh(r)
+14. p = (a + b + c) / 2
+15. return math.sqrt(p*(p-a)*(p-b)*(p-c))
+16. def HienThi(r):
+17. print("Tọa độ 3 đỉnh của tam giác là:")
+18. print("- Đỉnh A(%.3f,%.3f" % (r[0][0], r[0][1]))
+19. print("- Đỉnh B(%.3f,%.3f" % (r[1][0], r[1][1]))
+20. print("- Đỉnh C(%.3f,%.3f" % (r[2][0], r[2][1]))
+21. def TinhChat(r):
+22. a, b, c = DaiCanh(r)
+23. tl = ''
+24. if a == b == c:
+25. t += "đều"
+26. if a == b or b == c or a == c:
+27. tl += "cân "
+28. if a**2 == b**2 + c**2 or \
+29. b**2 == a**2 + c**2 or \
+30. c**2 == a**2 + b**2:
+31. tl += "vuông"
+32. return tl
+33. print("Nhập tam giác")
+34. x1, y1 = map(float, input("Nhập tọa độ đỉnh A: ").split())
+35. x2, y2 = map(float, input("Nhập tọa độ đỉnh B: ").split())
+36. x3, y3 = map(float, input("Nhập tọa độ đỉnh C: ").split())
+37. tg = ((x1, y1), (x2, y2), (x3, y3))
+38. HienThi(tg)
+39. print("Diện tích: %9.3f" % DienTich(tg))
+40. print("Chu vi: %9.3f" % ChuVi(tg))
+41. print("Tam giác có tính chất là tam giác "+TinhChat(tg))
